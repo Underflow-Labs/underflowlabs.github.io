@@ -5,8 +5,6 @@ export type NavigationItem = {
 
 export const navigationItems: NavigationItem[] = [
   { label: "Inicio", path: "/" },
-  { label: "Websites", path: "/servicios/websites" },
-  { label: "Automatizaciones", path: "/servicios/automatizaciones" },
-  { label: "Casos", path: "/casos" },
+  { label: "Servicios", path: "/servicios" },
   { label: "Contacto", path: "/contacto" },
 ];

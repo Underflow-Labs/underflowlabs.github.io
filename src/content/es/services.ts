@@ -1,48 +1,175 @@
-export const websitesService = {
-  eyebrow: "Servicio",
-  title: "Websites rápidos, modernos y pensados para convertir.",
-  description:
-    "Rediseñamos sitios desactualizados o construimos uno nuevo desde cero para que tu empresa genere más confianza y más oportunidades comerciales.",
-  outcomesTitle: "Resultados esperados",
-  outcomes: [
-    "Mejor tasa de contacto desde formularios y CTAs.",
-    "Mayor credibilidad de marca frente a clientes potenciales.",
-    "Sitio preparado para SEO técnico y campañas de adquisición.",
-  ],
-  deliverablesTitle: "Qué entregamos",
-  deliverables: [
-    "Arquitectura de contenido enfocada en ventas.",
-    "Diseño y desarrollo responsive (mobile first).",
-    "Optimización de velocidad y fundamentos SEO.",
-    "Setup de eventos clave para seguimiento comercial.",
-  ],
-  cta: "Quiero mejorar mi website",
+export type ServiceSlug = "websites" | "automatizaciones" | "software";
+
+export type ServicePageContent = {
+  slug: ServiceSlug;
+  path: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  primaryCta: string;
+  secondaryCta: string;
+  painsTitle: string;
+  pains: string[];
+  deliverablesTitle: string;
+  deliverables: string[];
+  processTitle: string;
+  process: string[];
+  closingTitle: string;
+  closingBody: string;
+  closingCta: string;
 };
 
-export const automationsService = {
+export type ServicesHubContent = {
+  title: string;
+  description: string;
+  cards: Array<{
+    title: string;
+    description: string;
+    path: string;
+    cta: string;
+  }>;
+  whyTitle: string;
+  whyBody: string;
+  whyBullets: string[];
+  closingTitle: string;
+  closingBody: string;
+  closingCta: string;
+};
+
+const sharedProcess = [
+  "Diagnóstico estratégico",
+  "Propuesta técnica clara",
+  "Desarrollo iterativo",
+  "Implementación y optimización",
+];
+
+export const websitesService: ServicePageContent = {
+  slug: "websites",
+  path: "/servicios/websites",
   eyebrow: "Servicio",
-  title: "Automatizaciones que eliminan trabajo manual y conectan tus sistemas.",
+  title: "Websites que convierten para empresas que quieren vender con claridad.",
   description:
-    "Diseñamos flujos automáticos con IA aplicada para ventas, soporte y operaciones, integrando tus herramientas actuales sin complejidad innecesaria.",
-  outcomesTitle: "Resultados esperados",
-  outcomes: [
-    "Menos tareas repetitivas y menos errores operativos.",
-    "Más velocidad en respuesta a leads y clientes.",
-    "Visibilidad clara del proceso con reportes accionables.",
+    "Diseñamos y desarrollamos sitios rápidos, confiables y orientados a decisiones comerciales para captar mejores oportunidades.",
+  primaryCta: "Agendar diagnóstico",
+  secondaryCta: "Ver servicios",
+  painsTitle: "Qué resolvemos",
+  pains: [
+    "Sitios que no explican bien la propuesta de valor.",
+    "Baja conversión en formularios y CTAs clave.",
+    "Experiencia móvil deficiente y falta de confianza.",
+    "Base técnica limitada para campañas y crecimiento.",
   ],
-  deliverablesTitle: "Qué entregamos",
+  deliverablesTitle: "Qué implementamos",
   deliverables: [
-    "Mapeo de proceso actual y puntos de fricción.",
-    "Diseño e implementación de flujos automatizados.",
-    "Integraciones con CRM, WhatsApp, email y herramientas internas.",
-    "Documentación y handoff para operación autónoma.",
+    "Arquitectura de contenido enfocada en conversión.",
+    "Diseño y desarrollo responsive con performance optimizada.",
+    "Fundamentos SEO y estructura semántica para escalar.",
+    "Eventos y puntos de medición para seguimiento comercial.",
+    "Documentación para operación y evolución continua.",
   ],
-  useCasesTitle: "Casos de uso frecuentes",
-  useCases: [
-    "Asignación automática de leads y seguimiento comercial.",
-    "Notificaciones internas y alertas de SLA.",
-    "Generación de reportes semanales sin carga manual.",
-    "Clasificación inicial de consultas con IA aplicada.",
+  processTitle: "Cómo trabajamos en websites",
+  process: sharedProcess,
+  closingTitle: "Tu website puede convertirse en un activo comercial real.",
+  closingBody: "Si hoy no está ayudando a vender más, podemos diagnosticarlo y definir un plan claro.",
+  closingCta: "Agendar diagnóstico",
+};
+
+export const automationsService: ServicePageContent = {
+  slug: "automatizaciones",
+  path: "/servicios/automatizaciones",
+  eyebrow: "Servicio",
+  title: "Automatización inteligente para operar mejor y reducir fricción.",
+  description:
+    "Conectamos herramientas, eliminamos tareas manuales y automatizamos procesos para que tu equipo gane foco operativo.",
+  primaryCta: "Agendar diagnóstico",
+  secondaryCta: "Ver servicios",
+  painsTitle: "Qué resolvemos",
+  pains: [
+    "Procesos repetitivos que consumen tiempo del equipo.",
+    "Errores por operación manual y falta de trazabilidad.",
+    "Herramientas desconectadas que generan retrabajo.",
+    "Baja visibilidad para tomar decisiones a tiempo.",
   ],
-  cta: "Quiero automatizar procesos",
+  deliverablesTitle: "Qué implementamos",
+  deliverables: [
+    "Mapeo de procesos y detección de cuellos de botella.",
+    "Diseño de flujos automatizados con reglas claras.",
+    "Integraciones con CRM, WhatsApp, email y sistemas internos.",
+    "Alertas, reportes y tableros para control operativo.",
+    "Documentación técnica y handoff al equipo.",
+  ],
+  processTitle: "Cómo trabajamos en automatización",
+  process: sharedProcess,
+  closingTitle: "Tu operación puede escalar sin más carga manual.",
+  closingBody: "Si el equipo está atascado en tareas repetitivas, podemos automatizar lo crítico primero.",
+  closingCta: "Agendar diagnóstico",
+};
+
+export const softwareService: ServicePageContent = {
+  slug: "software",
+  path: "/servicios/software",
+  eyebrow: "Servicio",
+  title: "Software a medida para resolver necesidades críticas del negocio.",
+  description:
+    "Desarrollamos sistemas y aplicaciones personalizadas con arquitectura sólida para acompañar crecimiento de largo plazo.",
+  primaryCta: "Agendar diagnóstico",
+  secondaryCta: "Ver servicios",
+  painsTitle: "Qué resolvemos",
+  pains: [
+    "Procesos del negocio que no encajan en herramientas estándar.",
+    "Falta de integración entre operación, ventas y datos.",
+    "Dependencia de soluciones frágiles o poco escalables.",
+    "Necesidad de control técnico sobre un flujo crítico.",
+  ],
+  deliverablesTitle: "Qué implementamos",
+  deliverables: [
+    "Diseño técnico y arquitectura orientada a escalabilidad.",
+    "Desarrollo de módulos, APIs y paneles según necesidad.",
+    "Integración con herramientas existentes y fuentes de datos.",
+    "QA técnico, despliegue y observabilidad básica.",
+    "Documentación y plan de evolución del sistema.",
+  ],
+  processTitle: "Cómo trabajamos en software a medida",
+  process: sharedProcess,
+  closingTitle: "Podés tener software que responda a tu operación real.",
+  closingBody: "Si tu negocio necesita algo específico, diseñamos una solución medible y mantenible.",
+  closingCta: "Agendar diagnóstico",
+};
+
+export const servicesHub: ServicesHubContent = {
+  title: "Servicios de ingeniería digital para crecer con base técnica.",
+  description:
+    "Diseñamos websites que convierten, automatizamos procesos y desarrollamos software a medida para escalar con claridad.",
+  cards: [
+    {
+      title: "Websites que convierten",
+      description: "Sitios rápidos y orientados a generar oportunidades comerciales reales.",
+      path: websitesService.path,
+      cta: "Ver servicio",
+    },
+    {
+      title: "Automatización inteligente",
+      description: "Procesos conectados para reducir carga manual y mejorar operación.",
+      path: automationsService.path,
+      cta: "Ver servicio",
+    },
+    {
+      title: "Software a medida",
+      description: "Sistemas personalizados para necesidades críticas de tu empresa.",
+      path: softwareService.path,
+      cta: "Ver servicio",
+    },
+  ],
+  whyTitle: "Por qué Underflow Labs",
+  whyBody:
+    "Somos un equipo de ingeniería enfocado en resultados: construimos soluciones medibles, escalables y alineadas a la operación real del negocio.",
+  whyBullets: [
+    "No hacemos solo diseño: construimos sistemas.",
+    "Arquitectura sólida desde el día uno.",
+    "Pensado para crecimiento a largo plazo.",
+    "Integraciones reales con tu operación.",
+  ],
+  closingTitle: "Elegí el frente prioritario y empezamos con un diagnóstico claro.",
+  closingBody: "Definimos el camino técnico-comercial más directo para generar impacto real.",
+  closingCta: "Agendar diagnóstico",
 };

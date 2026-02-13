@@ -1,4 +1,4 @@
-import { ServiceDetailSection } from "../components/sections/ServiceDetailSection";
+import { ServicePageTemplate } from "../components/sections/ServicePageTemplate";
 import { PageMeta } from "../components/seo/PageMeta";
 import { automationsService } from "../content/es/services";
 
@@ -6,11 +6,11 @@ export function AutomationsServicePage() {
   return (
     <>
       <PageMeta
-        title="Servicio de Automatizaciones | Underflow Labs"
-        description="Automatizamos procesos con IA aplicada e integraciones para reducir trabajo manual y mejorar operación."
+        title="Servicio de Automatización | Underflow Labs"
+        description="Automatizamos procesos críticos para reducir fricción operativa y mejorar velocidad de ejecución."
         path="/servicios/automatizaciones"
       />
-      <ServiceDetailSection {...automationsService} />
+      <ServicePageTemplate content={automationsService} />
     </>
   );
 }

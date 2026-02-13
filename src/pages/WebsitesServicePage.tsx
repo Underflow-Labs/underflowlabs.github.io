@@ -1,4 +1,4 @@
-import { ServiceDetailSection } from "../components/sections/ServiceDetailSection";
+import { ServicePageTemplate } from "../components/sections/ServicePageTemplate";
 import { PageMeta } from "../components/seo/PageMeta";
 import { websitesService } from "../content/es/services";
 
@@ -7,10 +7,10 @@ export function WebsitesServicePage() {
     <>
       <PageMeta
         title="Servicio de Websites | Underflow Labs"
-        description="Rediseñamos o construimos websites rápidos, confiables y orientados a conversión para empresas en crecimiento."
+        description="Diseñamos websites que convierten para empresas que buscan vender con claridad y escalar con base técnica."
         path="/servicios/websites"
       />
-      <ServiceDetailSection {...websitesService} />
+      <ServicePageTemplate content={websitesService} />
     </>
   );
 }

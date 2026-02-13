@@ -1,54 +1,45 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { SiteLayout } from "./layout/SiteLayout";
 import { HomePage } from "./pages/HomePage";
-import { Preloader } from "./components/sections/Preloader";
 
-const WebsitesServicePage = lazy(() => import("./pages/WebsitesServicePage").then(m => ({ default: m.WebsitesServicePage })));
-const AutomationsServicePage = lazy(() => import("./pages/AutomationsServicePage").then(m => ({ default: m.AutomationsServicePage })));
-const CasesPage = lazy(() => import("./pages/CasesPage").then(m => ({ default: m.CasesPage })));
-const ContactPage = lazy(() => import("./pages/ContactPage").then(m => ({ default: m.ContactPage })));
+const ServicesPage = lazy(() => import("./pages/ServicesPage").then((m) => ({ default: m.ServicesPage })));
+const WebsitesServicePage = lazy(() =>
+  import("./pages/WebsitesServicePage").then((m) => ({ default: m.WebsitesServicePage }))
+);
+const AutomationsServicePage = lazy(() =>
+  import("./pages/AutomationsServicePage").then((m) => ({ default: m.AutomationsServicePage }))
+);
+const SoftwareServicePage = lazy(() =>
+  import("./pages/SoftwareServicePage").then((m) => ({ default: m.SoftwareServicePage }))
+);
+const ContactPage = lazy(() => import("./pages/ContactPage").then((m) => ({ default: m.ContactPage })));
 
 export default function App() {
-  const [hasEntered, setHasEntered] = useState(false);
-
-  useEffect(() => {
-    const sessionEntered = sessionStorage.getItem("underflow_entered");
-    if (sessionEntered === "true") {
-      setHasEntered(true);
-    }
-  }, []);
-
-  const handleEnter = () => {
-    setHasEntered(true);
-    sessionStorage.setItem("underflow_entered", "true");
-  };
-
   return (
     <BrowserRouter>
-      {!hasEntered && <Preloader onEnter={handleEnter} />}
+      <Suspense fallback={null}>
+        <Routes>
+          <Route element={<SiteLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/servicios" element={<ServicesPage />} />
+            <Route path="/servicios/websites" element={<WebsitesServicePage />} />
+            <Route path="/servicios/automatizaciones" element={<AutomationsServicePage />} />
+            <Route path="/servicios/software" element={<SoftwareServicePage />} />
+            <Route path="/contacto" element={<ContactPage />} />
 
-      <div className={`transition-opacity duration-1000 ${hasEntered ? "opacity-100" : "opacity-0"}`}>
-        <Suspense fallback={null}>
-          <Routes>
-            <Route element={<SiteLayout />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/servicios/websites" element={<WebsitesServicePage />} />
-              <Route path="/servicios/automatizaciones" element={<AutomationsServicePage />} />
-              <Route path="/casos" element={<CasesPage />} />
-              <Route path="/contacto" element={<ContactPage />} />
-
-              <Route path="/about" element={<Navigate to="/" replace />} />
-              <Route path="/services" element={<Navigate to="/servicios/websites" replace />} />
-              <Route path="/case-studies" element={<Navigate to="/casos" replace />} />
-              <Route path="/contact" element={<Navigate to="/contacto" replace />} />
-              <Route path="/process" element={<Navigate to="/" replace />} />
-              <Route path="/insights" element={<Navigate to="/" replace />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Route>
-          </Routes>
-        </Suspense>
-      </div>
+            <Route path="/casos" element={<Navigate to="/contacto" replace />} />
+            <Route path="/about" element={<Navigate to="/" replace />} />
+            <Route path="/services" element={<Navigate to="/servicios" replace />} />
+            <Route path="/case-studies" element={<Navigate to="/contacto" replace />} />
+            <Route path="/contact" element={<Navigate to="/contacto" replace />} />
+            <Route path="/process" element={<Navigate to="/" replace />} />
+            <Route path="/insights" element={<Navigate to="/" replace />} />
+            <Route path="/servicios/software-a-medida" element={<Navigate to="/servicios/software" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

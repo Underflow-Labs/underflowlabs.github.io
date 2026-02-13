@@ -2,9 +2,13 @@
   --bg-primary: #0c0d0e;
   --bg-elevated: #141517;
   --bg-surface: #1c1d21;
+  --bg-grid-opacity: 0.042;
+  --bg-hero-grid-opacity: 0.062;
+  --bg-glow-opacity: 0.22;
+  --noise-opacity: 0.02;
 
   --text-primary: #f0ede8;
-  --text-secondary: #8a8680;
+  --text-secondary: #96918a;
   --text-muted: #504e4a;
 
   --accent-primary: #e8ff59;
