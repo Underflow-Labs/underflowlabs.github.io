@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { BOOK_CALL_URL } from "../config/links";
 import { PageMeta } from "../components/seo/PageMeta";
+import { ScrollReveal } from "../components/ui/ScrollReveal";
 import { servicesHub } from "../content/es/services";
 
 const primaryCtaClasses =
@@ -18,68 +19,82 @@ export function ServicesPage() {
         path="/servicios"
       />
 
-      <section className="border-b border-border-base py-16 sm:py-20">
-        <div className="site-container">
-          <h1 className="max-w-4xl font-heading text-4xl leading-tight sm:text-5xl">{servicesHub.title}</h1>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-text-secondary sm:text-lg">
-            {servicesHub.description}
-          </p>
-          <div className="mt-8">
-            <Link to={BOOK_CALL_URL} className={primaryCtaClasses} aria-label="Agendar diagnóstico">
-              Agendar diagnóstico
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 sm:py-20">
-        <div className="site-container grid gap-4 md:grid-cols-3">
-          {servicesHub.cards.map((card) => (
-            <article key={card.path} className="h-full rounded-2xl border border-border-base bg-bg-surface p-6">
-              <h2 className="font-heading text-2xl">{card.title}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-text-secondary">{card.description}</p>
-              <Link to={card.path} className="mt-6 inline-block text-sm font-semibold text-accent-primary hover:underline">
-                {card.cta}
-              </Link>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="py-16 sm:py-20">
-        <div className="site-container grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-start">
-          <div>
-            <h2 className="font-heading text-3xl leading-tight sm:text-4xl">{servicesHub.whyTitle}</h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-text-secondary">{servicesHub.whyBody}</p>
-          </div>
-
-          <ul className="space-y-3 rounded-2xl border border-border-base bg-bg-surface p-6">
-            {servicesHub.whyBullets.map((item) => (
-              <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-text-secondary">
-                <span className="mt-1.5 h-2 w-2 rounded-full bg-accent-primary" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="py-16 sm:py-20">
-        <div className="site-container">
-          <div className="rounded-2xl border border-border-base bg-bg-surface p-8 sm:p-10">
-            <h2 className="max-w-3xl font-heading text-3xl leading-tight sm:text-4xl">{servicesHub.closingTitle}</h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-secondary">{servicesHub.closingBody}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to={BOOK_CALL_URL} className={primaryCtaClasses} aria-label={servicesHub.closingCta}>
-                {servicesHub.closingCta}
-              </Link>
-              <Link to="/contacto" className={secondaryCtaClasses} aria-label="Hablar con el equipo">
-                Hablar con el equipo
+      <ScrollReveal width="100%" variant="fade" delay={0.02} amount={0.16}>
+        <section className="border-b border-border-base py-16 sm:py-20">
+          <div className="site-container">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-transparent" aria-hidden="true">
+              SERVICES
+            </p>
+            <h1 className="mt-4 max-w-4xl font-heading text-4xl leading-tight sm:text-5xl">{servicesHub.title}</h1>
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-text-secondary sm:text-lg">
+              {servicesHub.description}
+            </p>
+            <div className="mt-8">
+              <Link to={BOOK_CALL_URL} className={primaryCtaClasses} aria-label="Agendar diagnóstico">
+                Agendar diagnóstico
               </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal width="100%" variant="fade" delay={0.04} amount={0.16}>
+        <section className="py-16 sm:py-20">
+          <div className="site-container grid gap-4 md:grid-cols-3">
+            {servicesHub.cards.map((card) => (
+              <article key={card.path} className="h-full rounded-2xl border border-border-base bg-bg-surface p-6">
+                <h2 className="font-heading text-2xl">{card.title}</h2>
+                <p className="mt-3 text-sm leading-relaxed text-text-secondary">{card.description}</p>
+                <Link
+                  to={card.path}
+                  className="mt-6 inline-block text-sm font-semibold text-accent-primary hover:underline"
+                >
+                  {card.cta}
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal width="100%" variant="slide" delay={0.04} amount={0.18}>
+        <section className="py-16 sm:py-20">
+          <div className="site-container grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-start">
+            <div>
+              <h2 className="font-heading text-3xl leading-tight sm:text-4xl">{servicesHub.whyTitle}</h2>
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-text-secondary">{servicesHub.whyBody}</p>
+            </div>
+
+            <ul className="space-y-3 rounded-2xl border border-border-base bg-bg-surface p-6">
+              {servicesHub.whyBullets.map((item) => (
+                <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-text-secondary">
+                  <span className="mt-1.5 h-2 w-2 rounded-full bg-accent-primary" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal width="100%" variant="scale" delay={0.06} amount={0.2}>
+        <section className="py-16 sm:py-20">
+          <div className="site-container">
+            <div className="rounded-2xl border border-border-base bg-bg-surface p-8 sm:p-10">
+              <h2 className="max-w-3xl font-heading text-3xl leading-tight sm:text-4xl">{servicesHub.closingTitle}</h2>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-secondary">{servicesHub.closingBody}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link to={BOOK_CALL_URL} className={primaryCtaClasses} aria-label={servicesHub.closingCta}>
+                  {servicesHub.closingCta}
+                </Link>
+                <Link to="/contacto" className={secondaryCtaClasses} aria-label="Hablar con el equipo">
+                  Hablar con el equipo
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
     </>
   );
 }

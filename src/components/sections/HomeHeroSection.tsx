@@ -83,13 +83,16 @@ export function HomeHeroSection() {
       <div className="hero-readability-mask absolute inset-0" aria-hidden="true" />
       <div className="hero-readability-vignette absolute inset-0" aria-hidden="true" />
 
-      <div className="site-container relative z-10 py-20 sm:py-24">
+      <div className="site-container relative z-10 py-16 sm:py-20">
         <motion.div
           initial={prefersReducedMotion ? false : { opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={getTransition()}
         >
-          <h1 className="max-w-4xl font-heading text-4xl leading-tight sm:text-6xl">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-transparent" aria-hidden="true">
+            HOME
+          </p>
+          <h1 className="mt-4 max-w-4xl font-heading text-4xl leading-tight sm:text-6xl">
             Ingeniería digital para empresas que quieren crecer en serio.
           </h1>
         </motion.div>

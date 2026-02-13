@@ -29,9 +29,7 @@ export function HomePage() {
         <ProcessStepsSection />
       </ScrollReveal>
 
-      <ScrollReveal width="100%" variant="scale" delay={0.06} amount={0.2}>
-        <TeamSection />
-      </ScrollReveal>
+      <TeamSection />
 
       <ScrollReveal width="100%" variant="fade" delay={0.02} amount={0.14}>
         <HomeFinalCtaSection />

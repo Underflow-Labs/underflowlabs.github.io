@@ -1,3 +1,5 @@
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+
 type TeamMember = {
   name: string;
   role: string;
@@ -16,14 +18,14 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Julian Alconcher",
-    role: "Frontend Engineer",
+    role: "DevOps Engineer",
     linkedin: "https://www.linkedin.com/in/julian-alconcher/",
     github: "https://github.com/JulianAlconcher",
     image: "/equipo/Julian_Alconcher.png",
   },
   {
     name: "Antonio Carlos",
-    role: "Backend Engineer",
+    role: "Cloud Engineer",
     linkedin: "https://www.linkedin.com/in/antoniocarlos2000/",
     github: "https://github.com/totoccar",
     image: "/equipo/Antonio_Carlos.png",
@@ -37,7 +39,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Tobias Thiessen",
-    role: "Software Engineer",
+    role: "Fullstack Engineer",
     linkedin: "https://www.linkedin.com/in/tobias-thiessen/",
     github: "https://github.com/TobiasThiessen11",
     image: "/equipo/Tobias_Thiessen.png",
@@ -47,21 +49,42 @@ const teamMembers: TeamMember[] = [
 const topRow = teamMembers.slice(0, 3);
 const bottomRow = teamMembers.slice(3);
 
+const teamCardRevealVariants: Variants = {
+  hidden: { opacity: 0, y: 20, scale: 0.985 },
+  visible: (index: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.58,
+      delay: 0.06 + index * 0.095,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
 export function TeamSection() {
+  const prefersReducedMotion = !!useReducedMotion();
+
   return (
     <section className="py-16 sm:py-20">
       <div className="site-container">
         <h2 className="max-w-3xl font-heading text-3xl leading-tight text-text-primary sm:text-4xl">Nuestro equipo</h2>
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {topRow.map((member) => (
-            <TeamCard key={member.role} member={member} />
+          {topRow.map((member, index) => (
+            <TeamCard key={member.role} member={member} index={index} reduceMotion={prefersReducedMotion} />
           ))}
         </div>
 
         <div className="mt-4 grid gap-4 md:mx-auto md:max-w-3xl md:grid-cols-2">
-          {bottomRow.map((member) => (
-            <TeamCard key={member.role} member={member} />
+          {bottomRow.map((member, index) => (
+            <TeamCard
+              key={member.role}
+              member={member}
+              index={index + topRow.length}
+              reduceMotion={prefersReducedMotion}
+            />
           ))}
         </div>
       </div>
@@ -71,11 +94,13 @@ export function TeamSection() {
 
 type TeamCardProps = {
   member: TeamMember;
+  index: number;
+  reduceMotion: boolean;
 };
 
-function TeamCard({ member }: TeamCardProps) {
-  return (
-    <article className="h-full rounded-2xl border border-border-base bg-bg-surface p-6 text-center">
+function TeamCard({ member, index, reduceMotion }: TeamCardProps) {
+  const cardContent = (
+    <>
       <img
         src={member.image}
         alt={`Foto de ${member.name}`}
@@ -107,7 +132,25 @@ function TeamCard({ member }: TeamCardProps) {
           <GitHubIcon />
         </a>
       </div>
-    </article>
+    </>
+  );
+
+  if (reduceMotion) {
+    return <article className="h-full rounded-2xl border border-border-base bg-bg-surface p-6 text-center">{cardContent}</article>;
+  }
+
+  return (
+    <motion.article
+      className="h-full rounded-2xl border border-border-base bg-bg-surface p-6 text-center transition-[border-color,box-shadow] duration-300 will-change-transform hover:border-border-hover hover:shadow-[0_22px_44px_-28px_rgba(15,23,42,0.45)]"
+      variants={teamCardRevealVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.32 }}
+      custom={index}
+      whileHover={{ y: -4, scale: 1.01, transition: { duration: 0.26, ease: [0.22, 1, 0.36, 1] } }}
+    >
+      {cardContent}
+    </motion.article>
   );
 }
 
