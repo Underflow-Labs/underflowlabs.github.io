@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "homepage": "https://underflow-labs.github.io/",
+  "homepage": "https://www.underflowlabs.com/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
